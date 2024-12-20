@@ -161,6 +161,11 @@
 					"comment": "booleans",
 					"name": "constant.language.bool.stof",
 					"match": "\\b(true|false)\\b"
+				},
+				{
+					"comment": "null constant",
+					"name": "constant.language.null.stof",
+					"match": "\\b(null)\\b"
 				}
 			]
 		},
@@ -420,7 +425,7 @@
 				{
 					"comment": "other keywords",
 					"name": "keyword.other.stof",
-					"match": "\\b(drop|in|rename|move|deref|ref|typeof|extends)\\b"
+					"match": "\\b(drop|in|rename|move|deref|ref|typeof|typename|extends)\\b"
 				},
 				{
 					"comment": "fn",

@@ -2,7 +2,8 @@
   "name": "stof",
   "displayName": "Stof",
   "description": "Syntax highlighting for Stof",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "publisher": "Formata",
   "engines": {
     "vscode": "^1.96.0"
   },
