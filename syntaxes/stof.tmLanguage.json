@@ -1,0 +1,733 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Stof",
+	"scopeName": "source.stof",
+	"patterns": [
+		{
+			"comment": "import statements",
+			"name": "meta.import.stof",
+			"begin": "\\b(import)\\s",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.stof"
+				}
+			},
+			"end": "(;|,|\\n)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.semi.stof"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#punctuation"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"comment": "format",
+					"name": "meta.import.format.stof",
+					"match": "\\b[A-Za-z][A-Za-z0-9_]*\\b"
+				}
+			]
+		},
+		{
+			"include": "#block-comments"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#attributes"
+		},
+		{
+			"include": "#lvariables"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#functions"
+		},
+		{
+			"include": "#types"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#punctuation"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#variables"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"comment": "documentation comments",
+					"name": "comment.line.documentation.stof",
+					"match": "(///).*$",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.comment.stof"
+						}
+					}
+				},
+				{
+					"comment": "line comments",
+					"name": "comment.line.double-slash.stof",
+					"match": "(//).*$",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.comment.stof"
+						}
+					}
+				}
+			]
+		},
+		"block-comments": {
+			"patterns": [
+				{
+					"comment": "empty block comments",
+					"name": "comment.block.stof",
+					"match": "/\\*\\*/"
+				},
+				{
+					"comment": "block documentation comments",
+					"name": "comment.block.documentation.stof",
+					"begin": "/\\*\\*",
+					"end": "\\*/",
+					"patterns": [
+						{
+							"include": "#block-comments"
+						}
+					]
+				},
+				{
+					"comment": "block comments",
+					"name": "comment.block.stof",
+					"begin": "/\\*(?!\\*)",
+					"end": "\\*/",
+					"patterns": [
+						{
+							"include": "#block-comments"
+						}
+					]
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"comment": "ALL CAPS constants",
+					"name": "constant.other.caps.stof",
+					"match": "\\b[A-Z]{2}[A-Z0-9_]*\\b"
+				},
+				{
+					"comment": "decimal integers and floats",
+					"name": "constant.numeric.decimal.stof",
+					"match": "\\b\\d[\\d_]*(\\.?)[\\d_]*(?:(E|e)([+-]?)([\\d_]+))?(km|kilometer|kilometers|hm|hectometer|hectometers|dcm|decameter|decameters|m|meter|meters|dm|decimeter|decimeters|cm|centimeter|centimeters|mm|millimeter|millimeters|um|micrometer|micrometers|nm|nanometer|nanometers|mi|mile|miles|yd|yard|yards|ft|foot|feet|in|inch|inches|day|days|hr|hrs|hour|hours|min|mins|minute|minutes|s|second|seconds|ms|millisecond|milliseconds|us|microsecond|microseconds|ns|nanosecond|nanoseconds|K|kelvin|Kelvin|C|celsius|Celsius|F|fahrenheit|Fahrenheit|Gt|gigatonne|gigatonnes|Mt|megatonne|megatonnes|t|tonne|tonnes|kg|kilogram|kilograms|g|gram|grams|mg|milligram|milligrams|ug|microgram|micrograms|ng|nanogram|nanograms|pg|picogram|picograms|ton|tons|Ton|Tons|lb|lbs|pound|pounds|oz|ounce|ounces|rad|radians|deg|degrees|prad|pradians|pdeg|pdegrees)?\\b",
+					"captures": {
+						"1": {
+							"name": "punctuation.separator.dot.decimal.stof"
+						},
+						"2": {
+							"name": "keyword.operator.exponent.stof"
+						},
+						"3": {
+							"name": "keyword.operator.exponent.sign.stof"
+						},
+						"4": {
+							"name": "constant.numeric.decimal.exponent.mantissa.stof"
+						},
+						"5": {
+							"name": "entity.name.type.numeric.stof"
+						}
+					}
+				},
+				{
+					"comment": "booleans",
+					"name": "constant.language.bool.stof",
+					"match": "\\b(true|false)\\b"
+				}
+			]
+		},
+		"escapes": {
+			"comment": "escapes: ASCII, byte, Unicode, quote, regex",
+			"name": "constant.character.escape.stof",
+			"match": "(\\\\)(?:(?:(x[0-7][\\da-fA-F])|(u(\\{)[\\da-fA-F]{4,6}(\\}))|.))",
+			"captures": {
+				"1": {
+					"name": "constant.character.escape.backslash.stof"
+				},
+				"2": {
+					"name": "constant.character.escape.bit.stof"
+				},
+				"3": {
+					"name": "constant.character.escape.unicode.stof"
+				},
+				"4": {
+					"name": "constant.character.escape.unicode.punctuation.stof"
+				},
+				"5": {
+					"name": "constant.character.escape.unicode.punctuation.stof"
+				}
+			}
+		},
+		"attributes": {
+			"comment": "attributes",
+			"name": "meta.attribute.stof",
+			"begin": "(#)(\\!?)(\\[)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.attribute.stof"
+				},
+				"3": {
+					"name": "punctuation.brackets.attribute.stof"
+				}
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.brackets.attribute.stof"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#block-comments"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#punctuation"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#functions"
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"comment": "function definition",
+					"name": "meta.function.definition.stof",
+					"begin": "\\b(fn)\\s+((?:r#(?!self|super))?[A-Za-z0-9_]+)((\\()|(<))",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.fn.stof"
+						},
+						"2": {
+							"name": "entity.name.function.stof"
+						},
+						"4": {
+							"name": "punctuation.brackets.round.stof"
+						},
+						"5": {
+							"name": "punctuation.brackets.angle.stof"
+						}
+					},
+					"end": "(\\{)|(;)",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.brackets.curly.stof"
+						},
+						"2": {
+							"name": "punctuation.semi.stof"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#lvariables"
+						},
+						{
+							"include": "#constants"
+						},
+						{
+							"include": "#functions"
+						},
+						{
+							"include": "#punctuation"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				},
+				{
+					"comment": "function/method calls, chaining",
+					"name": "meta.function.call.stof",
+					"begin": "((?:r#(?!self|super))?[A-Za-z0-9_]+)(\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.stof"
+						},
+						"2": {
+							"name": "punctuation.brackets.round.stof"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.brackets.round.stof"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#attributes"
+						},
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#lvariables"
+						},
+						{
+							"include": "#constants"
+						},
+						{
+							"include": "#functions"
+						},
+						{
+							"include": "#punctuation"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				},
+				{
+					"comment": "function/method calls with turbofish",
+					"name": "meta.function.call.stof",
+					"begin": "((?:r#(?!crate|self|super))?[A-Za-z0-9_]+)(?=::<.*>\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.stof"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.brackets.round.stof"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#attributes"
+						},
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#lvariables"
+						},
+						{
+							"include": "#constants"
+						},
+						{
+							"include": "#functions"
+						},
+						{
+							"include": "#punctuation"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"comment": "control flow keywords",
+					"name": "keyword.control.stof",
+					"match": "\\b(break|continue|else|for|if|return|while)\\b"
+				},
+				{
+					"comment": "storage keywords",
+					"name": "keyword.other.stof storage.type.stof",
+					"match": "\\b(let|as|root)\\b"
+				},
+				{
+					"comment": "type keyword",
+					"name": "keyword.declaration.type.stof storage.type.stof",
+					"match": "\\b(type)\\b"
+				},
+				{
+					"comment": "other keywords",
+					"name": "keyword.other.stof",
+					"match": "\\b(drop|in|rename|move|deref|ref|typeof|extends)\\b"
+				},
+				{
+					"comment": "fn",
+					"name": "keyword.other.fn.stof",
+					"match": "\\bfn\\b"
+				},
+				{
+					"comment": "logical operators",
+					"name": "keyword.operator.logical.stof",
+					"match": "(\\||\\|\\||&&|<<|>>|!)(?!=)"
+				},
+				{
+					"comment": "logical AND, borrow references",
+					"name": "keyword.operator.borrow.and.stof",
+					"match": "&(?![&=])"
+				},
+				{
+					"comment": "assignment operators",
+					"name": "keyword.operator.assignment.stof",
+					"match": "(\\+=|-=|\\*=|/=|%=)"
+				},
+				{
+					"comment": "single equal",
+					"name": "keyword.operator.assignment.equal.stof",
+					"match": "(?<![<>])=(?!=|>)"
+				},
+				{
+					"comment": "comparison operators",
+					"name": "keyword.operator.comparison.stof",
+					"match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)"
+				},
+				{
+					"comment": "math operators",
+					"name": "keyword.operator.math.stof",
+					"match": "(([+%]|(\\*(?!\\w)))(?!=))|(-(?!>))|(/(?!/))"
+				},
+				{
+					"comment": "less than, greater than (special case)",
+					"match": "(?:\\b|(?:(\\))|(\\])|(\\})))[ \\t]+([<>])[ \\t]+(?:\\b|(?:(\\()|(\\[)|(\\{)))",
+					"captures": {
+						"1": {
+							"name": "punctuation.brackets.round.stof"
+						},
+						"2": {
+							"name": "punctuation.brackets.square.stof"
+						},
+						"3": {
+							"name": "punctuation.brackets.curly.stof"
+						},
+						"4": {
+							"name": "keyword.operator.comparison.stof"
+						},
+						"5": {
+							"name": "punctuation.brackets.round.stof"
+						},
+						"6": {
+							"name": "punctuation.brackets.square.stof"
+						},
+						"7": {
+							"name": "punctuation.brackets.curly.stof"
+						}
+					}
+				},
+				{
+					"comment": "namespace operator",
+					"name": "keyword.operator.namespace.stof",
+					"match": "::"
+				},
+				{
+					"comment": "subpattern binding",
+					"name": "keyword.operator.subpattern.stof",
+					"match": "@"
+				},
+				{
+					"comment": "dot access",
+					"name": "keyword.operator.access.dot.stof",
+					"match": "\\.(?!\\.)"
+				},
+				{
+					"comment": "ranges, range patterns",
+					"name": "keyword.operator.range.stof",
+					"match": "\\.{2}(=|\\.)?"
+				},
+				{
+					"comment": "colon",
+					"name": "keyword.operator.key-value.stof",
+					"match": ":(?!:)"
+				},
+				{
+					"comment": "dashrocket, skinny arrow",
+					"name": "keyword.operator.arrow.skinny.stof",
+					"match": "->|<-"
+				},
+				{
+					"comment": "hashrocket, fat arrow",
+					"name": "keyword.operator.arrow.fat.stof",
+					"match": "=>"
+				},
+				{
+					"comment": "dollar macros",
+					"name": "keyword.operator.macro.dollar.stof",
+					"match": "\\$"
+				},
+				{
+					"comment": "question mark operator, questionably sized, macro kleene matcher",
+					"name": "keyword.operator.question.stof",
+					"match": "\\?"
+				}
+			]
+		},
+		"interpolations": {
+			"comment": "curly brace interpolations",
+			"name": "meta.interpolation.stof",
+			"match": "(\\${)[^\"{}]*(})",
+			"captures": {
+				"1": {
+					"name": "punctuation.definition.interpolation.stof"
+				},
+				"2": {
+					"name": "punctuation.definition.interpolation.stof"
+				}
+			}
+		},
+		"types": {
+			"patterns": [
+				{
+					"comment": "unit types",
+					"match": "(?<![A-Za-z])(km|kilometer|kilometers|hm|hectometer|hectometers|dcm|decameter|decameters|m|meter|meters|dm|decimeter|decimeters|cm|centimeter|centimeters|mm|millimeter|millimeters|um|micrometer|micrometers|nm|nanometer|nanometers|mi|mile|miles|yd|yard|yards|ft|foot|feet|inch|inches|day|days|hr|hrs|hour|hours|min|mins|minute|minutes|s|second|seconds|ms|millisecond|milliseconds|us|microsecond|microseconds|ns|nanosecond|nanoseconds|K|kelvin|Kelvin|C|celsius|Celsius|F|fahrenheit|Fahrenheit|Gt|gigatonne|gigatonnes|Mt|megatonne|megatonnes|t|tonne|tonnes|kg|kilogram|kilograms|g|gram|grams|mg|milligram|milligrams|ug|microgram|micrograms|ng|nanogram|nanograms|pg|picogram|picograms|ton|tons|Ton|Tons|lb|lbs|pound|pounds|oz|ounce|ounces|rad|radians|deg|degrees|prad|pradians|pdeg|pdegrees)\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.units.stof"
+						}
+					}
+				},
+				{
+					"comment": "primitive types",
+					"name": "entity.name.type.primitive.stof",
+					"match": "\\b(bool|str|vec|blob|obj|fn|int|float)\\b"
+				},
+				{
+					"comment": "type declarations",
+					"match": "\\b(type)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.declaration.type.stof storage.type.stof"
+						},
+						"2": {
+							"name": "entity.name.type.declaration.stof"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#lvariables"
+						},
+						{
+							"include": "#punctuation"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#functions"
+						}
+					]
+				},
+				{
+					"comment": "types",
+					"name": "entity.name.type.stof",
+					"match": "\\b_?[A-Z][A-Za-z0-9_]*\\b(?!!)"
+				}
+			]
+		},
+		"punctuation": {
+			"patterns": [
+				{
+					"comment": "comma",
+					"name": "punctuation.comma.stof",
+					"match": ","
+				},
+				{
+					"comment": "curly braces",
+					"name": "punctuation.brackets.curly.stof",
+					"match": "[{}]"
+				},
+				{
+					"comment": "parentheses, round brackets",
+					"name": "punctuation.brackets.round.stof",
+					"match": "[()]"
+				},
+				{
+					"comment": "semicolon",
+					"name": "punctuation.semi.stof",
+					"match": ";"
+				},
+				{
+					"comment": "square brackets",
+					"name": "punctuation.brackets.square.stof",
+					"match": "[\\[\\]]"
+				},
+				{
+					"comment": "angle brackets",
+					"name": "punctuation.brackets.angle.stof",
+					"match": "(?<!=)[<>]"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"comment": "double-quoted strings",
+					"name": "string.quoted.double.stof",
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					]
+				},
+				{
+					"comment": "single-quoted strings",
+					"name": "string.quoted.single.stof",
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					]
+				},
+				{
+					"comment": "template strings",
+					"name": "string.quoted.template.stof",
+					"begin": "(`)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"end": "`",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#escapes"
+						},
+						{
+							"include": "#interpolations"
+						}
+					]
+				}
+			]
+		},
+		"lvariables": {
+			"patterns": [
+				{
+					"comment": "self",
+					"name": "variable.language.self.stof",
+					"match": "\\bself\\b"
+				},
+				{
+					"comment": "super",
+					"name": "variable.language.super.stof",
+					"match": "\\bsuper\\b"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"comment": "variables",
+					"name": "variable.other.stof",
+					"match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!(self|super)))?[a-z0-9_]+\\b"
+				}
+			]
+		}
+	}
+}

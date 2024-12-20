@@ -1,0 +1,29 @@
+{
+  "name": "stof",
+  "displayName": "Stof",
+  "description": "Syntax highlighting for Stof",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "stof",
+      "aliases": ["Stof", "stof"],
+      "extensions": [".stof"],
+      "configuration": "./language-configuration.json",
+      "icon": {
+        "light": "./icons/light.png",
+        "dark": "./icons/dark.png"
+      }
+    }],
+    "grammars": [{
+      "language": "stof",
+      "scopeName": "source.stof",
+      "path": "./syntaxes/stof.tmLanguage.json"
+    }]
+  }
+}

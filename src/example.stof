@@ -1,0 +1,31 @@
+
+import stof "hello.stof" as ello;
+
+#[main]
+fn main(): str {
+    let l = 32.3;
+    for (i in 34) {
+        let v = 'hello';
+        return i;
+    }
+    return `hello world ${hello}`;
+}
+
+fn another(): seconds {
+    drop self.another;
+    return 32;
+}
+
+type Point extends Point2D {
+    /**
+     *  This is a comment in Stof.
+     */
+    fn hello(): rad {
+        return (): str => 'hello';
+        return 32rad; // return radians here
+    }
+
+    fn length() {
+        Number.sqrt(self.x.pow(2) + self.y.pow(2));
+    }
+}
