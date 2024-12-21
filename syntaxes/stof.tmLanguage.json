@@ -32,6 +32,9 @@
 					"include": "#strings"
 				},
 				{
+					"include": "#lvariables"
+				},
+				{
 					"comment": "format",
 					"name": "meta.import.format.stof",
 					"match": "\\b[A-Za-z][A-Za-z0-9_]*\\b"
@@ -415,7 +418,7 @@
 				{
 					"comment": "storage keywords",
 					"name": "keyword.other.stof storage.type.stof",
-					"match": "\\b(let|as|root)\\b"
+					"match": "\\b(let|as|root|new)\\b"
 				},
 				{
 					"comment": "type keyword",
