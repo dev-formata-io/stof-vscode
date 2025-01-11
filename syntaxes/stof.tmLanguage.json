@@ -168,7 +168,7 @@
 				{
 					"comment": "null constant",
 					"name": "constant.language.null.stof",
-					"match": "\\b(null)\\b"
+					"match": "\\b(null|void)\\b"
 				}
 			]
 		},
@@ -413,7 +413,7 @@
 				{
 					"comment": "control flow keywords",
 					"name": "keyword.control.stof",
-					"match": "\\b(break|continue|else|for|if|return|while|switch)\\b"
+					"match": "\\b(break|continue|else|for|if|return|while|switch|try|catch)\\b"
 				},
 				{
 					"comment": "storage keywords",
@@ -428,7 +428,7 @@
 				{
 					"comment": "other keywords",
 					"name": "keyword.other.stof",
-					"match": "\\b(drop|in|rename|move|deref|ref|typeof|typename|extends|default|case)\\b"
+					"match": "\\b(drop|in|typeof|typename|extends|default|case)\\b"
 				},
 				{
 					"comment": "fn",
@@ -566,7 +566,7 @@
 				{
 					"comment": "primitive types",
 					"name": "entity.name.type.primitive.stof",
-					"match": "\\b(bool|str|vec|blob|obj|fn|int|float)\\b"
+					"match": "\\b(bool|str|vec|map|set|unknown|blob|obj|fn|int|float)\\b"
 				},
 				{
 					"comment": "type declarations",
