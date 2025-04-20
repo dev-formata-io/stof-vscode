@@ -448,7 +448,7 @@
 				{
 					"comment": "storage keywords",
 					"name": "keyword.other.stof storage.type.stof",
-					"match": "\\b(let|as|root|new)\\b"
+					"match": "\\b(let|as|root|new|on)\\b"
 				},
 				{
 					"comment": "type keyword",
@@ -741,6 +741,44 @@
 							"include": "#interpolations"
 						}
 					]
+				},
+				{
+					"comment": "hash strings",
+					"name": "string.quoted.hash.stof",
+					"begin": "#\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"end": "\"#",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					]
+				},
+				{
+					"comment": "raw strings",
+					"name": "string.quoted.raw.stof",
+					"begin": "r#\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"end": "\"#",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.stof"
+						}
+					},
+					"patterns": []
 				}
 			]
 		},
