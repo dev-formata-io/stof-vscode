@@ -274,7 +274,7 @@
 				{
 					"comment": "function definition",
 					"name": "meta.function.definition.stof",
-					"begin": "\\b(fn)\\s+((?:r#(?!self|super))?[A-Za-z0-9_]+)((\\()|(<))",
+					"begin": "\\b(fn|async fn)\\s+((?:r#(?!self|super))?[A-Za-z0-9_]+)((\\()|(<))",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.fn.stof"
@@ -443,7 +443,7 @@
 				{
 					"comment": "control flow keywords",
 					"name": "keyword.control.stof",
-					"match": "\\b(break|continue|else|for|if|return|while|switch|try|catch)\\b"
+					"match": "\\b(break|continue|else|for|if|return|while|switch|try|catch|await)\\b"
 				},
 				{
 					"comment": "storage keywords",
@@ -458,7 +458,7 @@
 				{
 					"comment": "other keywords",
 					"name": "keyword.other.stof",
-					"match": "\\b(drop|in|typeof|typename|extends|default|case|or|ref)\\b"
+					"match": "\\b(drop|in|typeof|typename|extends|default|case|ref)\\b"
 				},
 				{
 					"comment": "fn",
