@@ -274,7 +274,7 @@
 				{
 					"comment": "function definition",
 					"name": "meta.function.definition.stof",
-					"begin": "\\b(fn|async fn)\\s+((?:r#(?!self|super))?[A-Za-z0-9_]+)((\\()|(<))",
+					"begin": "\\b(fn|async fn|local async fn)\\s+((?:r#(?!self|super))?[A-Za-z0-9_]+)((\\()|(<))",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.fn.stof"
