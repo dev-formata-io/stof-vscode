@@ -448,7 +448,7 @@
 				{
 					"comment": "storage keywords",
 					"name": "keyword.other.stof storage.type.stof",
-					"match": "\\b(let|as|root|new|on)\\b"
+					"match": "\\b(let|const|as|root|new|on)\\b"
 				},
 				{
 					"comment": "type keyword",
