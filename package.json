@@ -2,8 +2,12 @@
   "name": "stof",
   "displayName": "Stof",
   "description": "Syntax highlighting for Stof",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "publisher": "Formata",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/dev-formata-io/stof"
+  },
   "engines": {
     "vscode": "^1.96.0"
   },
