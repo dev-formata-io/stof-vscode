@@ -2,10 +2,11 @@
   "name": "stof",
   "displayName": "Stof",
   "description": "Syntax highlighting for Stof",
-  "version": "0.1.8",
+  "version": "0.1.9",
+  "icon": "./icons/light.png",
   "publisher": "Formata",
   "repository": {
-    "type": "github",
+    "type": "git",
     "url": "https://github.com/dev-formata-io/stof"
   },
   "engines": {
@@ -14,6 +15,7 @@
   "categories": [
     "Programming Languages"
   ],
+  "keywords": ["stof", "formata", "data runtime"],
   "contributes": {
     "languages": [{
       "id": "stof",
