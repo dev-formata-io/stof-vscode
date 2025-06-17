@@ -458,7 +458,7 @@
 				{
 					"comment": "other keywords",
 					"name": "keyword.other.stof",
-					"match": "\\b(drop|in|typeof|typename|extends|default|case|ref)\\b"
+					"match": "\\b(drop|in|typeof|typename|extends|default|case|ref|extern)\\b"
 				},
 				{
 					"comment": "fn",
