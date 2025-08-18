@@ -636,7 +636,7 @@
 				{
 					"comment": "types",
 					"name": "entity.name.type.stof",
-					"match": "\\b_?[A-Z][A-Za-z0-9_]*\\b(?!!)"
+					"match": "\\b_?[A-Z][A-Za-z0-9_]*!?\\b"
 				}
 			]
 		},

@@ -2,7 +2,7 @@
   "name": "stof",
   "displayName": "Stof",
   "description": "Syntax highlighting for Stof",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "icon": "./icons/light.png",
   "publisher": "Formata",
   "repository": {
