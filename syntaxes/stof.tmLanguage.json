@@ -134,11 +134,6 @@
 		"constants": {
 			"patterns": [
 				{
-					"comment": "ALL CAPS constants",
-					"name": "constant.other.caps.stof",
-					"match": "\\b[A-Z]{2}[A-Z0-9_]*\\b"
-				},
-				{
 					"comment": "decimal integers and floats",
 					"name": "constant.numeric.decimal.stof",
 					"match": "\\b\\d[\\d_]*(\\.?)[\\d_]*(?:(E|e)([+-]?)([\\d_]+))?(km|kilometer|kilometers|hm|hectometer|hectometers|dcm|decameter|decameters|m|meter|meters|dm|decimeter|decimeters|cm|centimeter|centimeters|mm|millimeter|millimeters|um|micrometer|micrometers|nm|nanometer|nanometers|mi|mile|miles|yd|yard|yards|ft|foot|feet|in|inch|inches|day|days|hr|hrs|hour|hours|min|mins|minute|minutes|s|second|seconds|ms|millisecond|milliseconds|us|microsecond|microseconds|ns|nanosecond|nanoseconds|K|kelvin|Kelvin|C|celsius|Celsius|F|fahrenheit|Fahrenheit|Gt|gigatonne|gigatonnes|Mt|megatonne|megatonnes|t|tonne|tonnes|kg|kilogram|kilograms|g|gram|grams|mg|milligram|milligrams|ug|microgram|micrograms|ng|nanogram|nanograms|pg|picogram|picograms|ton|tons|Ton|Tons|lb|lbs|pound|pounds|oz|ounce|ounces|rad|radians|deg|degrees|prad|pradians|pdeg|pdegrees|bit|bits|byte|bytes|KiB|kibibytes|KB|kilobytes|MiB|mebibytes|MB|megabytes|GiB|gibibytes|GB|gigabytes|TiB|tebibytes|TB|terabytes|PiB|pebibytes|PB|petabytes|EiB|exbibytes|EB|exabytes|ZiB|zebibytes|ZB|zettabytes|YiB|yobibytes|YB|yottabytes)?\\b",
