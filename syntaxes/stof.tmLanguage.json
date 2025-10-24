@@ -591,7 +591,7 @@
 				{
 					"comment": "primitive types",
 					"name": "entity.name.type.primitive.stof",
-					"match": "\\b(bool|str|list|map|set|unknown|blob|obj|fn|int|float|data|ver)\\b"
+					"match": "\\b(bool|str|list|map|set|unknown|blob|obj|fn|int|float|data|ver|prompt)\\b"
 				},
 				{
 					"comment": "type declarations",
